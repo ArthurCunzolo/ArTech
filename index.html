@@ -506,21 +506,172 @@
           </div>
 
         </div>
-        <!-- Legenda de outros serviços -->
-        <div class="price-table__extras">
-          <p class="price-table__extras-title">Outros serviços avulsos:</p>
-          <div class="price-table__extras-grid">
-            <span class="extra-tag">Formatação R$150</span>
-            <span class="extra-tag">Formatação + Backup R$180</span>
-            <span class="extra-tag">Instalação S.O. R$120</span>
-            <span class="extra-tag">Diagnóstico R$50*</span>
-            <span class="extra-tag">Backup R$100</span>
-            <span class="extra-tag">Limpeza Gamer R$200–250</span>
-            <span class="extra-tag">Montagem de PC R$250</span>
-            <span class="extra-tag">Consultoria R$80</span>
-            <span class="extra-tag">Domicílio R$30–50</span>
+        <!-- CALCULADORA DE SERVIÇOS AVULSOS -->
+        <div class="service-calc" id="service-calc">
+          <div class="service-calc__header">
+            <div class="service-calc__title-row">
+              <div class="service-calc__icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="service-calc__title">Monte seu orçamento</h4>
+                <p class="service-calc__sub">Selecione os serviços e envie direto para o WhatsApp</p>
+              </div>
+            </div>
           </div>
-          <p class="price-table__extras-note">* Diagnóstico: valor abatido caso aprove o orçamento.</p>
+
+          <div class="service-calc__grid" id="calc-grid">
+
+            <button class="svc-item" data-name="Limpeza Simples" data-price="120" data-type="fixed" type="button">
+              <div class="svc-item__check" aria-hidden="true"></div>
+              <div class="svc-item__info">
+                <span class="svc-item__name">Limpeza Simples</span>
+                <span class="svc-item__desc">Abertura + limpeza + pasta térmica</span>
+              </div>
+              <span class="svc-item__price">R$120</span>
+            </button>
+
+            <button class="svc-item" data-name="Limpeza Premium" data-price="220" data-type="fixed" type="button">
+              <div class="svc-item__check" aria-hidden="true"></div>
+              <div class="svc-item__info">
+                <span class="svc-item__name">Limpeza Premium</span>
+                <span class="svc-item__desc">Limpeza + antivírus + otimização completa</span>
+              </div>
+              <span class="svc-item__price">R$220</span>
+            </button>
+
+            <button class="svc-item" data-name="Formatação" data-price="150" data-type="fixed" type="button">
+              <div class="svc-item__check" aria-hidden="true"></div>
+              <div class="svc-item__info">
+                <span class="svc-item__name">Formatação</span>
+                <span class="svc-item__desc">Windows + drivers + Office + navegadores</span>
+              </div>
+              <span class="svc-item__price">R$150</span>
+            </button>
+
+            <button class="svc-item" data-name="Formatação + Backup" data-price="180" data-type="fixed" type="button">
+              <div class="svc-item__check" aria-hidden="true"></div>
+              <div class="svc-item__info">
+                <span class="svc-item__name">Formatação + Backup</span>
+                <span class="svc-item__desc">Backup completo + formatação</span>
+              </div>
+              <span class="svc-item__price">R$180</span>
+            </button>
+
+            <button class="svc-item" data-name="Instalação de S.O." data-price="120" data-type="fixed" type="button">
+              <div class="svc-item__check" aria-hidden="true"></div>
+              <div class="svc-item__info">
+                <span class="svc-item__name">Instalação de S.O.</span>
+                <span class="svc-item__desc">Windows / Linux Mint / ChromeOS</span>
+              </div>
+              <span class="svc-item__price">R$120</span>
+            </button>
+
+            <button class="svc-item" data-name="Diagnóstico" data-price="50" data-type="fixed" type="button">
+              <div class="svc-item__check" aria-hidden="true"></div>
+              <div class="svc-item__info">
+                <span class="svc-item__name">Diagnóstico</span>
+                <span class="svc-item__desc">Valor abatido se aprovar o orçamento</span>
+              </div>
+              <span class="svc-item__price">R$50</span>
+            </button>
+
+            <button class="svc-item" data-name="Backup de Dados" data-price="100" data-type="fixed" type="button">
+              <div class="svc-item__check" aria-hidden="true"></div>
+              <div class="svc-item__info">
+                <span class="svc-item__name">Backup de Dados</span>
+                <span class="svc-item__desc">Cópia segura de todos os arquivos</span>
+              </div>
+              <span class="svc-item__price">R$100</span>
+            </button>
+
+            <button class="svc-item" data-name="Limpeza Gamer (Notebook)" data-price="250" data-type="fixed" type="button">
+              <div class="svc-item__check" aria-hidden="true"></div>
+              <div class="svc-item__info">
+                <span class="svc-item__name">Limpeza Gamer – Notebook</span>
+                <span class="svc-item__desc">Limpeza profunda + pasta premium</span>
+              </div>
+              <span class="svc-item__price">R$250</span>
+            </button>
+
+            <button class="svc-item" data-name="Limpeza Gamer (Desktop)" data-price="200" data-type="fixed" type="button">
+              <div class="svc-item__check" aria-hidden="true"></div>
+              <div class="svc-item__info">
+                <span class="svc-item__name">Limpeza Gamer – Desktop</span>
+                <span class="svc-item__desc">Limpeza profunda + testes de temperatura</span>
+              </div>
+              <span class="svc-item__price">R$200</span>
+            </button>
+
+            <button class="svc-item" data-name="Upgrade SSD (mão de obra)" data-price="150" data-type="fixed" type="button">
+              <div class="svc-item__check" aria-hidden="true"></div>
+              <div class="svc-item__info">
+                <span class="svc-item__name">Upgrade SSD</span>
+                <span class="svc-item__desc">Mão de obra (peça cobrada à parte)</span>
+              </div>
+              <span class="svc-item__price">R$150</span>
+            </button>
+
+            <button class="svc-item" data-name="Upgrade RAM (mão de obra)" data-price="100" data-type="fixed" type="button">
+              <div class="svc-item__check" aria-hidden="true"></div>
+              <div class="svc-item__info">
+                <span class="svc-item__name">Upgrade RAM</span>
+                <span class="svc-item__desc">Mão de obra (peça cobrada à parte)</span>
+              </div>
+              <span class="svc-item__price">R$100</span>
+            </button>
+
+            <button class="svc-item" data-name="Montagem de PC" data-price="250" data-type="fixed" type="button">
+              <div class="svc-item__check" aria-hidden="true"></div>
+              <div class="svc-item__info">
+                <span class="svc-item__name">Montagem de PC</span>
+                <span class="svc-item__desc">Montagem + configuração + testes</span>
+              </div>
+              <span class="svc-item__price">R$250</span>
+            </button>
+
+            <button class="svc-item" data-name="Consultoria para compra" data-price="80" data-type="fixed" type="button">
+              <div class="svc-item__check" aria-hidden="true"></div>
+              <div class="svc-item__info">
+                <span class="svc-item__name">Consultoria para Compra</span>
+                <span class="svc-item__desc">Indicação personalizada de hardware</span>
+              </div>
+              <span class="svc-item__price">R$80</span>
+            </button>
+
+            <button class="svc-item" data-name="Atendimento em Domicílio" data-price="40" data-type="fixed" type="button">
+              <div class="svc-item__check" aria-hidden="true"></div>
+              <div class="svc-item__info">
+                <span class="svc-item__name">Atendimento em Domicílio</span>
+                <span class="svc-item__desc">Taxa de deslocamento (R$30–50)</span>
+              </div>
+              <span class="svc-item__price">R$40</span>
+            </button>
+
+          </div>
+
+          <!-- Barra de total fixa -->
+          <div class="service-calc__footer" id="calc-footer" aria-live="polite">
+            <div class="service-calc__footer-left">
+              <span class="calc-count" id="calc-count">0 serviços selecionados</span>
+              <div class="calc-selected-list" id="calc-selected-list"></div>
+            </div>
+            <div class="service-calc__footer-right">
+              <div class="calc-total">
+                <span class="calc-total__label">Total estimado</span>
+                <span class="calc-total__value" id="calc-total">R$0</span>
+              </div>
+              <button class="calc-send" id="calc-send" disabled type="button">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.528 5.855L0 24l6.335-1.512A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.015-1.374l-.36-.214-3.731.891.934-3.628-.235-.374A9.776 9.776 0 012.182 12C2.182 6.566 6.566 2.182 12 2.182S21.818 6.566 21.818 12 17.434 21.818 12 21.818z"/>
+                </svg>
+                Enviar para WhatsApp
+              </button>
+            </div>
+          </div>
+          <p class="service-calc__note">* Valores são estimativas. O orçamento final é confirmado após diagnóstico.</p>
         </div>
       </div>
 

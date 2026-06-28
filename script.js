@@ -493,32 +493,46 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMenu = document.getElementById('mobile-menu');
 
   if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', () => {
-      const isOpen = hamburger.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', String(isOpen));
-      mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+    function openMenu() {
+      hamburger.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      // Remove inline display so CSS .open rule takes over
+      mobileMenu.style.removeProperty('display');
+      mobileMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
 
-      if (isOpen) {
-        mobileMenu.style.display = 'flex';
-        requestAnimationFrame(() => mobileMenu.classList.add('open'));
-        document.body.style.overflow = 'hidden';
+    function closeMenu() {
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+      // Hide after transition completes
+      setTimeout(() => {
+        if (!mobileMenu.classList.contains('open')) {
+          mobileMenu.style.display = 'none';
+        }
+      }, 320);
+    }
+
+    hamburger.addEventListener('click', () => {
+      if (hamburger.classList.contains('open')) {
+        closeMenu();
       } else {
-        mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
-        setTimeout(() => { mobileMenu.style.display = ''; }, 300);
+        openMenu();
       }
     });
 
     // Close on link click
     mobileMenu.querySelectorAll('.nav__mobile-link').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-        mobileMenu.classList.remove('open');
-        mobileMenu.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        setTimeout(() => { mobileMenu.style.display = ''; }, 300);
-      });
+      link.addEventListener('click', () => closeMenu());
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && hamburger.classList.contains('open')) closeMenu();
     });
   }
 
@@ -588,3 +602,90 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 }); // end DOMContentLoaded
+
+/* ═══════════════════════════════════════════════════════════════
+   SERVICE CALCULATOR
+═══════════════════════════════════════════════════════════════ */
+(function initServiceCalculator() {
+  const grid        = document.getElementById('calc-grid');
+  const sendBtn     = document.getElementById('calc-send');
+  const totalEl     = document.getElementById('calc-total');
+  const countEl     = document.getElementById('calc-count');
+  const selectedList = document.getElementById('calc-selected-list');
+
+  if (!grid || !sendBtn) return;
+
+  const selected = new Map(); // name -> price
+
+  function updateUI() {
+    const count = selected.size;
+    let total   = 0;
+    selected.forEach(price => total += price);
+
+    // Count label
+    countEl.textContent = count === 0
+      ? '0 serviços selecionados'
+      : `${count} serviço${count > 1 ? 's' : ''} selecionado${count > 1 ? 's' : ''}`;
+
+    // Total value
+    totalEl.textContent = `R$${total}`;
+    totalEl.classList.toggle('has-value', total > 0);
+
+    // Tags list
+    selectedList.innerHTML = '';
+    selected.forEach((_, name) => {
+      const tag = document.createElement('span');
+      tag.className = 'calc-tag';
+      tag.textContent = name;
+      selectedList.appendChild(tag);
+    });
+
+    // Send button
+    sendBtn.disabled = count === 0;
+  }
+
+  // Toggle selection on each item
+  grid.querySelectorAll('.svc-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name  = btn.dataset.name;
+      const price = parseInt(btn.dataset.price, 10);
+
+      if (selected.has(name)) {
+        selected.delete(name);
+        btn.classList.remove('selected');
+        btn.setAttribute('aria-pressed', 'false');
+      } else {
+        selected.set(name, price);
+        btn.classList.add('selected');
+        btn.setAttribute('aria-pressed', 'true');
+      }
+      updateUI();
+    });
+
+    // Accessibility
+    btn.setAttribute('role', 'checkbox');
+    btn.setAttribute('aria-pressed', 'false');
+  });
+
+  // Build WhatsApp message and redirect
+  sendBtn.addEventListener('click', () => {
+    if (selected.size === 0) return;
+
+    let total = 0;
+    const lines = [];
+    selected.forEach((price, name) => {
+      total += price;
+      lines.push(`• ${name} — R$${price}`);
+    });
+
+    const msg =
+      `Olá! Gostaria de agendar os seguintes serviços:\n\n` +
+      lines.join('\n') +
+      `\n\n*Total estimado: R$${total}*\n\nPoderia confirmar disponibilidade e valor final?`;
+
+    const url = `https://wa.me/5511982534271?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank', 'noopener');
+  });
+
+  updateUI();
+})();
