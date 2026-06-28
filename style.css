@@ -1994,3 +1994,72 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   .hero__actions--center { flex-direction: column; align-items: center; }
   .hero__actions--center .btn { width: 100%; justify-content: center; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   WEB TABLE — 5-COLUMN LAYOUT (Personalizado)
+═══════════════════════════════════════════════════════════════ */
+.price-table--web .price-table__head,
+.price-table--web .price-table__row,
+.price-table--web .price-table__pricing {
+  grid-template-columns: 1.6fr 1fr 1.1fr 1fr 1.1fr;
+}
+
+/* Coluna Personalizado — estilo âmbar/laranja suave */
+.price-table__col--custom {
+  background: rgba(245, 158, 11, 0.04);
+  border-left: 1px solid rgba(245, 158, 11, 0.18);
+}
+
+.price-table__popular-badge--custom {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: #f59e0b;
+}
+
+.price-table__col-name--custom {
+  color: #f59e0b;
+  font-size: 17px;
+}
+
+.price-table__cell--custom {
+  background: rgba(245, 158, 11, 0.03);
+  border-left: 1px solid rgba(245, 158, 11, 0.1);
+}
+
+.cell-check--custom {
+  color: #f59e0b;
+  font-size: 18px;
+  text-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+}
+
+.price-table__pricing-cell--custom {
+  background: rgba(245, 158, 11, 0.06);
+  border-left: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.price-table__price--custom {
+  font-size: 22px;
+  color: #f59e0b;
+  letter-spacing: -0.5px;
+}
+
+.price-table__cta--custom {
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+  color: #000 !important;
+  border-color: transparent;
+  font-weight: 700;
+}
+.price-table__cta--custom:hover {
+  box-shadow: 0 8px 32px rgba(245, 158, 11, 0.45);
+  transform: translateY(-1px);
+  color: #000 !important;
+}
+
+/* Responsivo: 5 colunas em telas menores */
+@media (max-width: 1000px) {
+  .price-table--web .price-table__head,
+  .price-table--web .price-table__row,
+  .price-table--web .price-table__pricing {
+    grid-template-columns: 1.4fr 0.9fr 1fr 0.9fr 1fr;
+  }
+}
