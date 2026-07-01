@@ -2346,3 +2346,108 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 
   .svc-item__name { font-size: 13px; white-space: normal; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   SERVICE TABS
+═══════════════════════════════════════════════════════════════ */
+.svc-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 6px;
+  width: fit-content;
+  flex-wrap: wrap;
+}
+
+.svc-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font);
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s var(--ease);
+  white-space: nowrap;
+}
+
+.svc-tab:hover {
+  color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.05);
+}
+
+.svc-tab.active {
+  background: var(--blue-primary);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(10,132,255,0.35);
+}
+
+.svc-tab svg {
+  flex-shrink: 0;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.svc-tab.active svg,
+.svc-tab:hover svg {
+  opacity: 1;
+}
+
+/* Panels */
+.svc-panel {
+  display: block;
+  animation: panelFadeIn 0.35s var(--ease) both;
+}
+
+.svc-panel[hidden] {
+  display: none !important;
+}
+
+@keyframes panelFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Tabs responsive ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .svc-tabs {
+    width: 100%;
+    border-radius: 14px;
+    gap: 4px;
+    padding: 5px;
+  }
+
+  .svc-tab {
+    flex: 1;
+    justify-content: center;
+    padding: 10px 10px;
+    font-size: 12px;
+    gap: 5px;
+    border-radius: 9px;
+    text-align: center;
+  }
+
+  .svc-tab span {
+    /* On very small screens, abbreviate */
+    display: block;
+  }
+
+  .svc-tab svg {
+    display: none; /* hide icons on mobile to save space */
+  }
+}
+
+@media (max-width: 400px) {
+  .svc-tab {
+    font-size: 11px;
+    padding: 9px 6px;
+  }
+}

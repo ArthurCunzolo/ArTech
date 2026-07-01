@@ -689,3 +689,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateUI();
 })();
+
+/* ═══════════════════════════════════════════════════════════════
+   SERVICE TABS
+═══════════════════════════════════════════════════════════════ */
+(function initServiceTabs() {
+  const tabs   = document.querySelectorAll('.svc-tab');
+  const panels = document.querySelectorAll('.svc-panel');
+
+  if (!tabs.length || !panels.length) return;
+
+  function switchTab(targetTab) {
+    // Deactivate all
+    tabs.forEach(t => {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+    });
+    panels.forEach(p => {
+      p.hidden = true;
+      p.classList.remove('active');
+    });
+
+    // Activate selected
+    targetTab.classList.add('active');
+    targetTab.setAttribute('aria-selected', 'true');
+
+    const targetPanelId = targetTab.getAttribute('aria-controls');
+    const targetPanel   = document.getElementById(targetPanelId);
+    if (targetPanel) {
+      targetPanel.hidden = false;
+      targetPanel.classList.add('active');
+
+      // Re-trigger ScrollTrigger reveals inside newly shown panel
+      if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh();
+      }
+    }
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => switchTab(tab));
+
+    // Keyboard: arrow left/right to switch tabs
+    tab.addEventListener('keydown', (e) => {
+      const tabArray = Array.from(tabs);
+      const idx = tabArray.indexOf(tab);
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        switchTab(tabArray[(idx + 1) % tabArray.length]);
+        tabArray[(idx + 1) % tabArray.length].focus();
+      }
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        switchTab(tabArray[(idx - 1 + tabArray.length) % tabArray.length]);
+        tabArray[(idx - 1 + tabArray.length) % tabArray.length].focus();
+      }
+    });
+  });
+})();

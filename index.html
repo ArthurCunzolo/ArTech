@@ -46,7 +46,6 @@
       </a>
       <ul class="nav__links" role="list">
         <li><a href="#servicos" class="nav__link">Serviços</a></li>
-        <li><a href="#pacotes" class="nav__link">Pacotes</a></li>
         <li><a href="#diferenciais" class="nav__link">Diferenciais</a></li>
         <li><a href="https://wa.me/5511982534271?text=Olá! Vim pelo site e gostaria de um orçamento." class="nav__cta" target="_blank" rel="noopener">Falar no WhatsApp</a></li>
       </ul>
@@ -57,7 +56,6 @@
     <div class="nav__mobile" id="mobile-menu" aria-hidden="true">
       <ul role="list">
         <li><a href="#servicos" class="nav__mobile-link">Serviços</a></li>
-        <li><a href="#pacotes" class="nav__mobile-link">Pacotes</a></li>
         <li><a href="#diferenciais" class="nav__mobile-link">Diferenciais</a></li>
         <li><a href="https://wa.me/5511982534271?text=Olá! Vim pelo site e gostaria de um orçamento." class="nav__mobile-link" target="_blank" rel="noopener">WhatsApp</a></li>
       </ul>
@@ -138,9 +136,33 @@
       <div class="section__header reveal">
         <span class="section__eyebrow">Transparência total</span>
         <h2 class="section__title">Serviços &amp; <span class="gradient-text">Preços</span></h2>
-        <p class="section__subtitle">Escolha o serviço ideal. Sem surpresas, sem letras miúdas.</p>
+        <p class="section__subtitle">Escolha a categoria e veja os planos disponíveis. Sem surpresas, sem letras miúdas.</p>
       </div>
 
+      <!-- TABS DE NAVEGAÇÃO -->
+      <div class="svc-tabs reveal" role="tablist" aria-label="Categorias de serviço">
+        <button class="svc-tab active" id="tab-web" role="tab" aria-selected="true" aria-controls="panel-web" type="button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+          </svg>
+          <span>Desenvolvimento Web</span>
+        </button>
+        <button class="svc-tab" id="tab-tech" role="tab" aria-selected="false" aria-controls="panel-tech" type="button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/>
+          </svg>
+          <span>Assistência Técnica</span>
+        </button>
+        <button class="svc-tab" id="tab-custom" role="tab" aria-selected="false" aria-controls="panel-custom" type="button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/>
+          </svg>
+          <span>Orçamento Personalizado</span>
+        </button>
+      </div>
+
+      <!-- PAINEL: DESENVOLVIMENTO WEB -->
+      <div class="svc-panel active" id="panel-web" role="tabpanel" aria-labelledby="tab-web">
       <!-- ── TABELA: DESENVOLVIMENTO WEB ── -->
       <div class="price-table-wrap reveal">
         <div class="price-table__header">
@@ -260,7 +282,10 @@
           </div>
         </div>
       </div>
+      </div>
 
+      <!-- PAINEL: ASSISTÊNCIA TÉCNICA -->
+      <div class="svc-panel" id="panel-tech" role="tabpanel" aria-labelledby="tab-tech" hidden>
       <!-- ── TABELA: ASSISTÊNCIA TÉCNICA ── -->
       <div class="price-table-wrap price-table-wrap--tech reveal">
         <div class="price-table__header">
@@ -369,7 +394,12 @@
             </div>
           </div>
         </div>
+      </div>
+      </div>
 
+      <!-- PAINEL: ORÇAMENTO PERSONALIZADO -->
+      <div class="svc-panel" id="panel-custom" role="tabpanel" aria-labelledby="tab-custom" hidden>
+        <div class="price-table-wrap">
         <!-- CALCULADORA DE SERVIÇOS AVULSOS -->
         <div class="service-calc" id="service-calc">
           <div class="service-calc__header">
@@ -536,7 +566,8 @@
             </div>
           </div>
           <p class="service-calc__note">* Valores são estimativas. O orçamento final é confirmado após diagnóstico.</p>
-
+        </div>
+      </div>
       </div>
 
     </div>
@@ -569,75 +600,6 @@
           <span>✅ Sem compromisso</span>
           <span>⭐ 4.9 de avaliação</span>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════
-       PACKAGES
-  ═══════════════════════════════════════ -->
-  <section class="section section--dark" id="pacotes" aria-label="Pacotes">
-    <div class="container">
-      <div class="section__header reveal">
-        <span class="section__eyebrow">Escolha o ideal</span>
-        <h2 class="section__title">Pacotes <span class="gradient-text">completos</span></h2>
-        <p class="section__subtitle">Combinações pensadas para o máximo de resultado com o melhor custo-benefício.</p>
-      </div>
-
-      <div class="packages__grid">
-        <article class="package package--bronze reveal" tabindex="0">
-          <div class="package__glow" aria-hidden="true"></div>
-          <div class="package__tier">
-            <span class="package__tier-label">Bronze</span>
-            <div class="package__tier-icon" aria-hidden="true">🥉</div>
-          </div>
-          <div class="package__price"><span class="package__price-num">R$120</span></div>
-          <ul class="package__items">
-            <li><span class="check" aria-hidden="true">✓</span> Limpeza Física Completa</li>
-          </ul>
-          <p class="package__note">Ideal para manutenção preventiva rápida</p>
-          <a href="https://wa.me/5511982534271?text=Olá! Quero o Pacote Bronze." class="package__cta" target="_blank" rel="noopener">Contratar</a>
-        </article>
-
-        <article class="package package--prata reveal" tabindex="0">
-          <div class="package__glow" aria-hidden="true"></div>
-          <div class="package__tier">
-            <span class="package__tier-label">Prata</span>
-            <div class="package__tier-icon" aria-hidden="true">🥈</div>
-          </div>
-          <div class="package__price"><span class="package__price-num">R$220</span></div>
-          <ul class="package__items">
-            <li><span class="check" aria-hidden="true">✓</span> Limpeza Premium</li>
-            <li><span class="check" aria-hidden="true">✓</span> Antivírus</li>
-            <li><span class="check" aria-hidden="true">✓</span> Otimização completa</li>
-            <li><span class="check" aria-hidden="true">✓</span> Atualização de drivers</li>
-          </ul>
-          <p class="package__note">Para quem quer desempenho máximo</p>
-          <a href="https://wa.me/5511982534271?text=Olá! Quero o Pacote Prata." class="package__cta" target="_blank" rel="noopener">Contratar</a>
-        </article>
-
-        <article class="package package--ouro reveal" tabindex="0">
-          <div class="package__glow package__glow--gold" aria-hidden="true"></div>
-          <div class="package__featured-label">⭐ Recomendado</div>
-          <div class="package__tier">
-            <span class="package__tier-label">Ouro</span>
-            <div class="package__tier-icon" aria-hidden="true">🥇</div>
-          </div>
-          <div class="package__price">
-            <span class="package__price-num">R$350</span>
-            <span class="package__price-note">+ peça SSD</span>
-          </div>
-          <ul class="package__items">
-            <li><span class="check" aria-hidden="true">✓</span> Limpeza Premium completa</li>
-            <li><span class="check" aria-hidden="true">✓</span> SSD instalado (peça à parte)</li>
-            <li><span class="check" aria-hidden="true">✓</span> Backup de dados</li>
-            <li><span class="check" aria-hidden="true">✓</span> Formatação com Windows</li>
-            <li><span class="check" aria-hidden="true">✓</span> Antivírus instalado</li>
-            <li><span class="check" aria-hidden="true">✓</span> Office configurado</li>
-          </ul>
-          <p class="package__note">A transformação completa do seu computador</p>
-          <a href="https://wa.me/5511982534271?text=Olá! Quero o Pacote Ouro." class="package__cta package__cta--gold" target="_blank" rel="noopener">Contratar Agora</a>
-        </article>
       </div>
     </div>
   </section>
@@ -774,7 +736,6 @@
           <h4 class="footer__col-title">Navegação</h4>
           <ul role="list">
             <li><a href="#servicos">Serviços</a></li>
-            <li><a href="#pacotes">Pacotes</a></li>
             <li><a href="#diferenciais">Diferenciais</a></li>
           </ul>
         </nav>
