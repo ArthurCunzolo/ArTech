@@ -945,6 +945,111 @@
     @media (min-width: 769px) {
       .nav__back { display: none; }
     }
+
+    /* ── SITE MOCKUPS ── */
+    .site-mock {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+      transition: transform 3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .site-mock.scrolled { transform: translateY(-42%); }
+
+    /* Nav */
+    .sm-nav {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 12px;
+      background: rgba(5,5,5,0.95);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      flex-shrink: 0;
+    }
+    .sm-nav--light { background: rgba(20,10,5,0.98); }
+    .sm-logo { width: 36px; height: 8px; border-radius: 3px; background: linear-gradient(90deg,#0A84FF,#00C2FF); }
+    .sm-logo--peach { background: linear-gradient(90deg,#e8845a,#d4603a); }
+    .sm-logo--purple { background: linear-gradient(90deg,#7c3aed,#a855f7); }
+    .sm-nav-links { display:flex; gap:6px; margin-left:auto; }
+    .sm-nav-links span { width:20px; height:4px; border-radius:2px; background:rgba(255,255,255,0.12); }
+
+    /* Hero */
+    .sm-hero {
+      padding: 16px 14px 14px;
+      background: linear-gradient(160deg,#050505 0%,#080c14 100%);
+      flex-shrink: 0;
+    }
+    .sm-hero--capriccio { background: linear-gradient(160deg,#1a0a04 0%,#2d1408 100%); }
+    .sm-hero--termas    { background: linear-gradient(160deg,#001a2e 0%,#003352 100%); position:relative; overflow:hidden; }
+    .sm-hero--pair      { background: linear-gradient(160deg,#0a0014 0%,#150028 100%); }
+
+    .sm-hero-tag { width:50px; height:5px; border-radius:3px; background:rgba(10,132,255,0.4); margin-bottom:7px; }
+    .sm-hero-badge { width:60px; height:5px; border-radius:3px; background:rgba(232,132,90,0.5); margin-bottom:7px; }
+    .sm-hero-h1 { width:80%; height:8px; border-radius:4px; background:rgba(255,255,255,0.85); margin-bottom:5px; }
+    .sm-hero-h1--peach { background: linear-gradient(90deg,#e8845a,#f0a07a); }
+    .sm-hero-h1--white { background: rgba(255,255,255,0.9); }
+    .sm-hero-h1--purple { background: linear-gradient(90deg,#7c3aed,#a855f7); }
+    .sm-hero-h2 { width:60%; height:8px; border-radius:4px; background:rgba(255,255,255,0.85); margin-bottom:8px; }
+    .sm-hero-sub { width:65%; height:4px; border-radius:2px; background:rgba(255,255,255,0.2); margin-bottom:4px; }
+    .sm-hero-sub + .sm-hero-sub { width:50%; margin-bottom:10px; }
+    .sm-hero-sub--white { background:rgba(255,255,255,0.35); }
+    .sm-hero-btns { display:flex; gap:6px; }
+
+    /* Buttons */
+    .sm-btn { height:12px; border-radius:4px; }
+    .sm-btn--primary { width:48px; background:linear-gradient(90deg,#0A84FF,#00C2FF); }
+    .sm-btn--peach   { width:52px; background:linear-gradient(90deg,#e8845a,#d4603a); }
+    .sm-btn--cyan    { width:48px; background:linear-gradient(90deg,#00b4d8,#0077b6); }
+    .sm-btn--purple  { width:48px; background:linear-gradient(90deg,#7c3aed,#a855f7); }
+    .sm-btn--ghost   { width:40px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); }
+    .sm-btn--sm      { height:9px; width:32px; }
+    .sm-btn--full    { width:100%; margin-top:4px; }
+
+    /* Water waves (Termas) */
+    .sm-water-waves { position:absolute; bottom:0; left:0; right:0; height:20px; overflow:hidden; }
+    .sm-wave {
+      position:absolute; bottom:0; left:-20px; right:-20px; height:12px;
+      background:rgba(0,180,216,0.3); border-radius:50% 50% 0 0;
+      animation: waveAnim 2s ease-in-out infinite;
+    }
+    .sm-wave--2 { animation-delay:0.5s; background:rgba(0,119,182,0.2); height:8px; }
+    @keyframes waveAnim { 0%,100%{transform:translateY(0) scaleX(1)} 50%{transform:translateY(-3px) scaleX(1.05)} }
+
+    /* Sections */
+    .sm-section { padding: 12px 14px; background:#080808; flex-shrink:0; }
+    .sm-section--dark { background:#050505; }
+    .sm-section-title { width:45%; height:6px; border-radius:3px; background:rgba(255,255,255,0.5); margin-bottom:10px; }
+    .sm-section-title--center { margin-left:auto; margin-right:auto; }
+    .sm-section-title--white { background:rgba(255,255,255,0.6); }
+
+    /* Cards */
+    .sm-cards { display:flex; gap:6px; }
+    .sm-cards--center { justify-content:center; }
+    .sm-card { flex:1; height:36px; border-radius:6px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.07); }
+    .sm-card--peach { border-color:rgba(232,132,90,0.2); background:rgba(232,132,90,0.06); }
+    .sm-card--dark  { background:rgba(255,255,255,0.03); border-color:rgba(255,255,255,0.05); }
+
+    /* Grid 2x2 (Capriccio gallery) */
+    .sm-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:4px; }
+    .sm-img-card { height:28px; border-radius:4px; background:linear-gradient(135deg,rgba(232,132,90,0.15),rgba(180,80,40,0.1)); border:1px solid rgba(232,132,90,0.1); }
+
+    /* Table pricing (ArTech) */
+    .sm-table { display:flex; gap:5px; }
+    .sm-table-col { flex:1; height:44px; border-radius:6px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); }
+    .sm-table-col--hl { background:rgba(10,132,255,0.08); border-color:rgba(10,132,255,0.2); transform:scaleY(1.08); }
+
+    /* Form (Termas) */
+    .sm-form { display:flex; flex-direction:column; gap:4px; }
+    .sm-input { height:10px; border-radius:4px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08); }
+
+    /* Dashboard (ArthurPair) */
+    .sm-dashboard { display:flex; gap:6px; height:60px; }
+    .sm-dash-sidebar { width:28px; border-radius:6px; background:rgba(124,58,237,0.15); border:1px solid rgba(124,58,237,0.2); flex-shrink:0; }
+    .sm-dash-main { flex:1; display:flex; flex-direction:column; gap:4px; }
+    .sm-dash-stats { display:flex; gap:4px; }
+    .sm-stat-card { flex:1; height:14px; border-radius:4px; background:rgba(124,58,237,0.1); border:1px solid rgba(124,58,237,0.15); }
+    .sm-dash-chart { flex:1; border-radius:4px; background:linear-gradient(90deg,rgba(124,58,237,0.15) 0%,rgba(168,85,247,0.08) 100%); border:1px solid rgba(124,58,237,0.1); }
   </style>
 </head>
 <body>
@@ -1071,12 +1176,24 @@
                 <span>Carregando...</span>
               </div>
               <div class="preview-site" id="site-1">
-                <iframe src="https://ar-tech-solutions-two.vercel.app/"
-                  id="frame-1"
-                  title="ArTech Solutions"
-                  scrolling="no"
-                  sandbox="allow-same-origin allow-scripts">
-                </iframe>
+                <div class="site-mock site-mock--artech">
+                  <div class="sm-nav"><div class="sm-logo"></div><div class="sm-nav-links"><span></span><span></span><span></span></div></div>
+                  <div class="sm-hero">
+                    <div class="sm-hero-tag"></div>
+                    <div class="sm-hero-h1"></div>
+                    <div class="sm-hero-h2"></div>
+                    <div class="sm-hero-sub"></div>
+                    <div class="sm-hero-btns"><div class="sm-btn sm-btn--primary"></div><div class="sm-btn sm-btn--ghost"></div></div>
+                  </div>
+                  <div class="sm-section">
+                    <div class="sm-section-title"></div>
+                    <div class="sm-cards"><div class="sm-card"></div><div class="sm-card"></div><div class="sm-card"></div></div>
+                  </div>
+                  <div class="sm-section">
+                    <div class="sm-section-title"></div>
+                    <div class="sm-table"><div class="sm-table-col"></div><div class="sm-table-col sm-table-col--hl"></div><div class="sm-table-col"></div></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1134,12 +1251,23 @@
                 <span>Carregando...</span>
               </div>
               <div class="preview-site" id="site-2">
-                <iframe src="https://capriccio-peach.vercel.app/"
-                  id="frame-2"
-                  title="Capriccio Buffet"
-                  scrolling="no"
-                  sandbox="allow-same-origin allow-scripts">
-                </iframe>
+                <div class="site-mock site-mock--capriccio">
+                  <div class="sm-nav sm-nav--light"><div class="sm-logo sm-logo--peach"></div><div class="sm-nav-links"><span></span><span></span><span></span></div></div>
+                  <div class="sm-hero sm-hero--capriccio">
+                    <div class="sm-hero-badge"></div>
+                    <div class="sm-hero-h1 sm-hero-h1--peach"></div>
+                    <div class="sm-hero-sub"></div>
+                    <div class="sm-hero-btns"><div class="sm-btn sm-btn--peach"></div></div>
+                  </div>
+                  <div class="sm-section">
+                    <div class="sm-section-title sm-section-title--center"></div>
+                    <div class="sm-grid-2"><div class="sm-img-card"></div><div class="sm-img-card"></div><div class="sm-img-card"></div><div class="sm-img-card"></div></div>
+                  </div>
+                  <div class="sm-section">
+                    <div class="sm-section-title sm-section-title--center"></div>
+                    <div class="sm-cards sm-cards--center"><div class="sm-card sm-card--peach"></div><div class="sm-card sm-card--peach"></div><div class="sm-card sm-card--peach"></div></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1198,12 +1326,21 @@
                 <span>Carregando...</span>
               </div>
               <div class="preview-site" id="site-3">
-                <iframe src="https://termas-pacu-registro-de-acoes.vercel.app/"
-                  id="frame-3"
-                  title="Termas Pacu"
-                  scrolling="no"
-                  sandbox="allow-same-origin allow-scripts">
-                </iframe>
+                <div class="site-mock site-mock--termas">
+                  <div class="sm-hero sm-hero--termas">
+                    <div class="sm-water-waves"><div class="sm-wave"></div><div class="sm-wave sm-wave--2"></div></div>
+                    <div class="sm-hero-h1 sm-hero-h1--white"></div>
+                    <div class="sm-hero-sub sm-hero-sub--white"></div>
+                    <div class="sm-hero-btns"><div class="sm-btn sm-btn--cyan"></div></div>
+                  </div>
+                  <div class="sm-section sm-section--dark">
+                    <div class="sm-section-title sm-section-title--white sm-section-title--center"></div>
+                    <div class="sm-form"><div class="sm-input"></div><div class="sm-input"></div><div class="sm-input"></div><div class="sm-btn sm-btn--cyan sm-btn--full"></div></div>
+                  </div>
+                  <div class="sm-section sm-section--dark">
+                    <div class="sm-cards"><div class="sm-card sm-card--dark"></div><div class="sm-card sm-card--dark"></div><div class="sm-card sm-card--dark"></div></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1262,12 +1399,17 @@
                 <span>Carregando...</span>
               </div>
               <div class="preview-site" id="site-4">
-                <iframe src="https://arthurpair.vercel.app/"
-                  id="frame-4"
-                  title="ArthurPair SaaS"
-                  scrolling="no"
-                  sandbox="allow-same-origin allow-scripts">
-                </iframe>
+                <div class="site-mock site-mock--pair">
+                  <div class="sm-nav"><div class="sm-logo sm-logo--purple"></div><div class="sm-nav-links"><span></span><span></span></div><div class="sm-btn sm-btn--purple sm-btn--sm"></div></div>
+                  <div class="sm-hero sm-hero--pair">
+                    <div class="sm-hero-h1 sm-hero-h1--purple"></div>
+                    <div class="sm-hero-sub"></div>
+                    <div class="sm-hero-btns"><div class="sm-btn sm-btn--purple"></div><div class="sm-btn sm-btn--ghost"></div></div>
+                  </div>
+                  <div class="sm-section">
+                    <div class="sm-dashboard"><div class="sm-dash-sidebar"></div><div class="sm-dash-main"><div class="sm-dash-stats"><div class="sm-stat-card"></div><div class="sm-stat-card"></div><div class="sm-stat-card"></div></div><div class="sm-dash-chart"></div></div></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1455,21 +1597,13 @@
     }
 
     // ── LOOPING PREVIEW SYSTEM ──
-    // Each preview: 1s loading anim → fade in → 2.5s scroll down → 0.5s pause → 2.5s scroll up → 0.5s pause → repeat
-    // Total loop: ~7s. Iframes load once, loop runs via CSS class toggle.
+    // Uses CSS mockups (no iframes). Loop: loading bar → reveal → scroll down → scroll up → repeat
 
-    const previews = [
-      { id: 1, url: 'https://ar-tech-solutions-two.vercel.app/' },
-      { id: 2, url: 'https://capriccio-peach.vercel.app/' },
-      { id: 3, url: 'https://termas-pacu-registro-de-acoes.vercel.app/' },
-      { id: 4, url: 'https://arthurpair.vercel.app/' },
-    ];
-
-    const LOAD_DURATION   = 1200;  // fake loading bar
-    const SCROLL_DOWN     = 2500;  // scroll to bottom
-    const PAUSE_BOTTOM    = 600;   // pause at bottom
-    const SCROLL_UP       = 2500;  // scroll back to top
-    const PAUSE_TOP       = 700;   // pause at top before loop
+    const LOAD_DURATION = 1000;
+    const SCROLL_DOWN   = 2800;
+    const PAUSE_BOTTOM  = 700;
+    const SCROLL_UP     = 2800;
+    const PAUSE_TOP     = 600;
 
     function animateProgress(progEl, from, to, duration) {
       return new Promise(resolve => {
@@ -1488,48 +1622,40 @@
 
     function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-    async function runLoop(p) {
-      const frame    = document.getElementById('frame-' + p.id);
-      const loading  = document.getElementById('loading-' + p.id);
-      const prog     = document.getElementById('prog-' + p.id);
-
-      // Wait for iframe to load (or timeout after 4s)
-      await new Promise(resolve => {
-        if (frame.contentDocument && frame.contentDocument.readyState === 'complete') {
-          resolve();
-        } else {
-          let done = false;
-          frame.addEventListener('load', () => { done = true; resolve(); });
-          setTimeout(() => { if (!done) resolve(); }, 4000);
-        }
-      });
+    async function runLoop(id) {
+      const loading = document.getElementById('loading-' + id);
+      const prog    = document.getElementById('prog-' + id);
+      const mock    = document.querySelector('#site-' + id + ' .site-mock');
 
       while (true) {
-        // Phase 1: Loading bar animation
+        // Phase 1: Show loading spinner + animate progress bar
+        prog.style.transition = 'none';
         prog.style.width = '0%';
         loading.classList.remove('hidden');
-        await animateProgress(prog, 0, 70, LOAD_DURATION * 0.5);
-        await animateProgress(prog, 70, 95, LOAD_DURATION * 0.4);
-        await animateProgress(prog, 95, 100, LOAD_DURATION * 0.1);
+        mock.classList.remove('scrolled');
 
-        // Phase 2: Reveal site
+        await sleep(50);
+        await animateProgress(prog, 0, 65, LOAD_DURATION * 0.55);
+        await animateProgress(prog, 65, 90, LOAD_DURATION * 0.3);
+        await animateProgress(prog, 90, 100, LOAD_DURATION * 0.15);
+
+        // Phase 2: Hide loading, reveal site at top
         loading.classList.add('hidden');
-        frame.classList.remove('scrolled');
-        await sleep(400);
+        await sleep(350);
 
-        // Phase 3: Scroll down
-        frame.classList.add('scrolled');
+        // Phase 3: Scroll down (CSS transition on .site-mock)
+        mock.classList.add('scrolled');
         await sleep(SCROLL_DOWN + PAUSE_BOTTOM);
 
-        // Phase 4: Scroll back up
-        frame.classList.remove('scrolled');
+        // Phase 4: Scroll back to top
+        mock.classList.remove('scrolled');
         await sleep(SCROLL_UP + PAUSE_TOP);
       }
     }
 
-    // Stagger start so all 4 previews don't animate in sync
-    previews.forEach((p, i) => {
-      setTimeout(() => runLoop(p), i * 1800);
+    // Start each preview staggered so they don't sync up
+    [1, 2, 3, 4].forEach((id, i) => {
+      setTimeout(() => runLoop(id), i * 1600);
     });
   </script>
 </body>
