@@ -525,20 +525,7 @@
       position: relative;
     }
 
-    .browser-url-bar {
-      position: absolute;
-      inset: 0;
-      border-radius: 5px;
-      overflow: hidden;
-    }
 
-    .browser-url-progress {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, rgba(10,132,255,0.25), rgba(0,194,255,0.15));
-      transition: width 0.1s linear;
-      border-radius: 5px;
-    }
 
     .browser-url span {
       font-size: 0.58rem;
@@ -558,37 +545,7 @@
       background: #080808;
     }
 
-    .preview-loading {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      background: #080808;
-      z-index: 10;
-      opacity: 1;
-      transition: opacity 0.4s ease;
-    }
 
-    .preview-loading.hidden { opacity: 0; pointer-events: none; }
-
-    .preview-loading__spinner {
-      width: 22px; height: 22px;
-      border: 2px solid rgba(10,132,255,0.15);
-      border-top-color: var(--blue-primary);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    .preview-loading span {
-      font-size: 0.65rem;
-      color: var(--text-muted);
-      font-family: monospace;
-    }
 
     .preview-site {
       position: absolute;
@@ -603,11 +560,6 @@
       transform: scale(0.5);
       transform-origin: top left;
       pointer-events: none;
-      transition: transform 3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .preview-site iframe.scrolled {
-      transform: scale(0.5) translateY(-42%);
     }
 
     /* ── PROJECT INFO ── */
@@ -1164,17 +1116,10 @@
               <div class="browser-dot"></div>
               <div class="browser-dot"></div>
               <div class="browser-url">
-                <div class="browser-url-bar">
-                  <div class="browser-url-progress" id="prog-1"></div>
-                </div>
-                <span id="url-text-1">ar-tech-solutions-two.vercel.app</span>
+                <span>ar-tech-solutions-two.vercel.app</span>
               </div>
             </div>
             <div class="browser-content" id="preview-1">
-              <div class="preview-loading" id="loading-1">
-                <div class="preview-loading__spinner"></div>
-                <span>Carregando...</span>
-              </div>
               <div class="preview-site" id="site-1">
                 <iframe src="https://ar-tech-solutions-two.vercel.app/" id="frame-1" title="ArTech Solutions" scrolling="no"></iframe>
               </div>
@@ -1222,17 +1167,10 @@
               <div class="browser-dot"></div>
               <div class="browser-dot"></div>
               <div class="browser-url">
-                <div class="browser-url-bar">
-                  <div class="browser-url-progress" id="prog-2"></div>
-                </div>
-                <span id="url-text-2">capriccio-peach.vercel.app</span>
+                <span>capriccio-peach.vercel.app</span>
               </div>
             </div>
             <div class="browser-content" id="preview-2">
-              <div class="preview-loading" id="loading-2">
-                <div class="preview-loading__spinner"></div>
-                <span>Carregando...</span>
-              </div>
               <div class="preview-site" id="site-2">
                 <iframe src="https://capriccio-peach.vercel.app/" id="frame-2" title="Capriccio Buffet" scrolling="no"></iframe>
               </div>
@@ -1281,17 +1219,10 @@
               <div class="browser-dot"></div>
               <div class="browser-dot"></div>
               <div class="browser-url">
-                <div class="browser-url-bar">
-                  <div class="browser-url-progress" id="prog-3"></div>
-                </div>
-                <span id="url-text-3">termas-pacu-registro-de-acoes.vercel.app</span>
+                <span>termas-pacu-registro-de-acoes.vercel.app</span>
               </div>
             </div>
             <div class="browser-content" id="preview-3">
-              <div class="preview-loading" id="loading-3">
-                <div class="preview-loading__spinner"></div>
-                <span>Carregando...</span>
-              </div>
               <div class="preview-site" id="site-3">
                 <iframe src="https://termas-pacu-registro-de-acoes.vercel.app/" id="frame-3" title="Termas Pacu" scrolling="no"></iframe>
               </div>
@@ -1340,17 +1271,10 @@
               <div class="browser-dot"></div>
               <div class="browser-dot"></div>
               <div class="browser-url">
-                <div class="browser-url-bar">
-                  <div class="browser-url-progress" id="prog-4"></div>
-                </div>
-                <span id="url-text-4">arthurpair.vercel.app</span>
+                <span>arthurpair.vercel.app</span>
               </div>
             </div>
             <div class="browser-content" id="preview-4">
-              <div class="preview-loading" id="loading-4">
-                <div class="preview-loading__spinner"></div>
-                <span>Carregando...</span>
-              </div>
               <div class="preview-site" id="site-4">
                 <iframe src="https://arthurpair.vercel.app/" id="frame-4" title="ArthurPair SaaS" scrolling="no"></iframe>
               </div>
@@ -1539,73 +1463,7 @@
       document.body.style.overflow = '';
     }
 
-    // ── LOOPING PREVIEW SYSTEM ──
-    // Uses CSS mockups (no iframes). Loop: loading bar → reveal → scroll down → scroll up → repeat
 
-    const LOAD_DURATION = 1000;
-    const SCROLL_DOWN   = 2800;
-    const PAUSE_BOTTOM  = 700;
-    const SCROLL_UP     = 2800;
-    const PAUSE_TOP     = 600;
-
-    function animateProgress(progEl, from, to, duration) {
-      return new Promise(resolve => {
-        const start = performance.now();
-        const diff = to - from;
-        function step(now) {
-          const t = Math.min((now - start) / duration, 1);
-          const eased = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
-          progEl.style.width = (from + diff * eased) + '%';
-          if (t < 1) requestAnimationFrame(step);
-          else resolve();
-        }
-        requestAnimationFrame(step);
-      });
-    }
-
-    function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
-
-    async function runLoop(id) {
-      const loading = document.getElementById('loading-' + id);
-      const prog    = document.getElementById('prog-' + id);
-      const frame   = document.querySelector('#site-' + id + ' iframe');
-
-      // Wait for iframe load or timeout
-      await new Promise(resolve => {
-        const onLoad = () => resolve();
-        frame.addEventListener('load', onLoad, { once: true });
-        setTimeout(resolve, 5000);
-      });
-
-      while (true) {
-        // Phase 1: Show loading bar
-        prog.style.transition = 'none';
-        prog.style.width = '0%';
-        loading.classList.remove('hidden');
-        frame.classList.remove('scrolled');
-
-        await sleep(50);
-        await animateProgress(prog, 0, 65, LOAD_DURATION * 0.55);
-        await animateProgress(prog, 65, 90, LOAD_DURATION * 0.3);
-        await animateProgress(prog, 90, 100, LOAD_DURATION * 0.15);
-
-        // Phase 2: Reveal site
-        loading.classList.add('hidden');
-        await sleep(400);
-
-        // Phase 3: Scroll down
-        frame.classList.add('scrolled');
-        await sleep(SCROLL_DOWN + PAUSE_BOTTOM);
-
-        // Phase 4: Scroll back up
-        frame.classList.remove('scrolled');
-        await sleep(SCROLL_UP + PAUSE_TOP);
-      }
-    }
-
-    [1, 2, 3, 4].forEach((id, i) => {
-      setTimeout(() => runLoop(id), i * 1600);
-    });
   </script>
 </body>
 </html>
