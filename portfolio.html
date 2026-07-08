@@ -478,7 +478,7 @@
       text-align: center;
     }
 
-    /* Animated browser mockup */
+    /* ── BROWSER MOCKUP & LOOPING PREVIEW ── */
     .browser-mockup {
       position: absolute;
       inset: 12px;
@@ -491,19 +491,20 @@
     }
 
     .browser-bar {
-      height: 32px;
+      height: 34px;
       background: #141414;
       border-bottom: 1px solid rgba(255,255,255,0.06);
       display: flex;
       align-items: center;
-      padding: 0 12px;
-      gap: 6px;
+      padding: 0 10px;
+      gap: 5px;
       flex-shrink: 0;
     }
 
     .browser-dot {
       width: 8px; height: 8px;
       border-radius: 50%;
+      flex-shrink: 0;
     }
 
     .browser-dot:nth-child(1) { background: #ff5f57; }
@@ -512,34 +513,101 @@
 
     .browser-url {
       flex: 1;
-      height: 18px;
-      background: rgba(255,255,255,0.04);
-      border-radius: 4px;
-      margin-left: 8px;
+      height: 20px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 5px;
+      margin-left: 6px;
       display: flex;
       align-items: center;
       padding: 0 8px;
+      gap: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .browser-url-bar {
+      position: absolute;
+      inset: 0;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .browser-url-progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, rgba(10,132,255,0.25), rgba(0,194,255,0.15));
+      transition: width 0.1s linear;
+      border-radius: 5px;
     }
 
     .browser-url span {
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       color: var(--text-muted);
       font-family: monospace;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      position: relative;
+      z-index: 1;
     }
 
     .browser-content {
       flex: 1;
       overflow: hidden;
       position: relative;
+      background: #080808;
     }
 
-    .browser-content iframe {
+    .preview-loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #080808;
+      z-index: 10;
+      opacity: 1;
+      transition: opacity 0.4s ease;
+    }
+
+    .preview-loading.hidden { opacity: 0; pointer-events: none; }
+
+    .preview-loading__spinner {
+      width: 22px; height: 22px;
+      border: 2px solid rgba(10,132,255,0.15);
+      border-top-color: var(--blue-primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .preview-loading span {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      font-family: monospace;
+    }
+
+    .preview-site {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .preview-site iframe {
       width: 200%;
       height: 200%;
       border: none;
       transform: scale(0.5);
       transform-origin: top left;
       pointer-events: none;
+      transition: transform 2.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .preview-site iframe.scrolled {
+      transform: scale(0.5) translateY(-38%);
     }
 
     /* ── PROJECT INFO ── */
@@ -991,11 +1059,25 @@
               <div class="browser-dot"></div>
               <div class="browser-dot"></div>
               <div class="browser-url">
-                <span>ar-tech-solutions-two.vercel.app</span>
+                <div class="browser-url-bar">
+                  <div class="browser-url-progress" id="prog-1"></div>
+                </div>
+                <span id="url-text-1">ar-tech-solutions-two.vercel.app</span>
               </div>
             </div>
-            <div class="browser-content">
-              <iframe src="https://ar-tech-solutions-two.vercel.app/" loading="lazy" title="ArTech Solutions"></iframe>
+            <div class="browser-content" id="preview-1">
+              <div class="preview-loading" id="loading-1">
+                <div class="preview-loading__spinner"></div>
+                <span>Carregando...</span>
+              </div>
+              <div class="preview-site" id="site-1">
+                <iframe src="https://ar-tech-solutions-two.vercel.app/"
+                  id="frame-1"
+                  title="ArTech Solutions"
+                  scrolling="no"
+                  sandbox="allow-same-origin allow-scripts">
+                </iframe>
+              </div>
             </div>
           </div>
           <div class="project-preview__overlay">
@@ -1040,11 +1122,25 @@
               <div class="browser-dot"></div>
               <div class="browser-dot"></div>
               <div class="browser-url">
-                <span>capriccio-peach.vercel.app</span>
+                <div class="browser-url-bar">
+                  <div class="browser-url-progress" id="prog-2"></div>
+                </div>
+                <span id="url-text-2">capriccio-peach.vercel.app</span>
               </div>
             </div>
-            <div class="browser-content">
-              <iframe src="https://capriccio-peach.vercel.app/" loading="lazy" title="Capriccio Buffet"></iframe>
+            <div class="browser-content" id="preview-2">
+              <div class="preview-loading" id="loading-2">
+                <div class="preview-loading__spinner"></div>
+                <span>Carregando...</span>
+              </div>
+              <div class="preview-site" id="site-2">
+                <iframe src="https://capriccio-peach.vercel.app/"
+                  id="frame-2"
+                  title="Capriccio Buffet"
+                  scrolling="no"
+                  sandbox="allow-same-origin allow-scripts">
+                </iframe>
+              </div>
             </div>
           </div>
           <div class="project-preview__overlay">
@@ -1090,11 +1186,25 @@
               <div class="browser-dot"></div>
               <div class="browser-dot"></div>
               <div class="browser-url">
-                <span>termas-pacu-registro-de-acoes.vercel.app</span>
+                <div class="browser-url-bar">
+                  <div class="browser-url-progress" id="prog-3"></div>
+                </div>
+                <span id="url-text-3">termas-pacu-registro-de-acoes.vercel.app</span>
               </div>
             </div>
-            <div class="browser-content">
-              <iframe src="https://termas-pacu-registro-de-acoes.vercel.app/" loading="lazy" title="Termas Pacu"></iframe>
+            <div class="browser-content" id="preview-3">
+              <div class="preview-loading" id="loading-3">
+                <div class="preview-loading__spinner"></div>
+                <span>Carregando...</span>
+              </div>
+              <div class="preview-site" id="site-3">
+                <iframe src="https://termas-pacu-registro-de-acoes.vercel.app/"
+                  id="frame-3"
+                  title="Termas Pacu"
+                  scrolling="no"
+                  sandbox="allow-same-origin allow-scripts">
+                </iframe>
+              </div>
             </div>
           </div>
           <div class="project-preview__overlay">
@@ -1140,11 +1250,25 @@
               <div class="browser-dot"></div>
               <div class="browser-dot"></div>
               <div class="browser-url">
-                <span>arthurpair.vercel.app</span>
+                <div class="browser-url-bar">
+                  <div class="browser-url-progress" id="prog-4"></div>
+                </div>
+                <span id="url-text-4">arthurpair.vercel.app</span>
               </div>
             </div>
-            <div class="browser-content">
-              <iframe src="https://arthurpair.vercel.app/" loading="lazy" title="ArthurPair SaaS"></iframe>
+            <div class="browser-content" id="preview-4">
+              <div class="preview-loading" id="loading-4">
+                <div class="preview-loading__spinner"></div>
+                <span>Carregando...</span>
+              </div>
+              <div class="preview-site" id="site-4">
+                <iframe src="https://arthurpair.vercel.app/"
+                  id="frame-4"
+                  title="ArthurPair SaaS"
+                  scrolling="no"
+                  sandbox="allow-same-origin allow-scripts">
+                </iframe>
+              </div>
             </div>
           </div>
           <div class="project-preview__overlay">
@@ -1329,6 +1453,84 @@
       lightbox.classList.remove('open');
       document.body.style.overflow = '';
     }
+
+    // ── LOOPING PREVIEW SYSTEM ──
+    // Each preview: 1s loading anim → fade in → 2.5s scroll down → 0.5s pause → 2.5s scroll up → 0.5s pause → repeat
+    // Total loop: ~7s. Iframes load once, loop runs via CSS class toggle.
+
+    const previews = [
+      { id: 1, url: 'https://ar-tech-solutions-two.vercel.app/' },
+      { id: 2, url: 'https://capriccio-peach.vercel.app/' },
+      { id: 3, url: 'https://termas-pacu-registro-de-acoes.vercel.app/' },
+      { id: 4, url: 'https://arthurpair.vercel.app/' },
+    ];
+
+    const LOAD_DURATION   = 1200;  // fake loading bar
+    const SCROLL_DOWN     = 2500;  // scroll to bottom
+    const PAUSE_BOTTOM    = 600;   // pause at bottom
+    const SCROLL_UP       = 2500;  // scroll back to top
+    const PAUSE_TOP       = 700;   // pause at top before loop
+
+    function animateProgress(progEl, from, to, duration) {
+      return new Promise(resolve => {
+        const start = performance.now();
+        const diff = to - from;
+        function step(now) {
+          const t = Math.min((now - start) / duration, 1);
+          const eased = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+          progEl.style.width = (from + diff * eased) + '%';
+          if (t < 1) requestAnimationFrame(step);
+          else resolve();
+        }
+        requestAnimationFrame(step);
+      });
+    }
+
+    function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+    async function runLoop(p) {
+      const frame    = document.getElementById('frame-' + p.id);
+      const loading  = document.getElementById('loading-' + p.id);
+      const prog     = document.getElementById('prog-' + p.id);
+
+      // Wait for iframe to load (or timeout after 4s)
+      await new Promise(resolve => {
+        if (frame.contentDocument && frame.contentDocument.readyState === 'complete') {
+          resolve();
+        } else {
+          let done = false;
+          frame.addEventListener('load', () => { done = true; resolve(); });
+          setTimeout(() => { if (!done) resolve(); }, 4000);
+        }
+      });
+
+      while (true) {
+        // Phase 1: Loading bar animation
+        prog.style.width = '0%';
+        loading.classList.remove('hidden');
+        await animateProgress(prog, 0, 70, LOAD_DURATION * 0.5);
+        await animateProgress(prog, 70, 95, LOAD_DURATION * 0.4);
+        await animateProgress(prog, 95, 100, LOAD_DURATION * 0.1);
+
+        // Phase 2: Reveal site
+        loading.classList.add('hidden');
+        frame.classList.remove('scrolled');
+        await sleep(400);
+
+        // Phase 3: Scroll down
+        frame.classList.add('scrolled');
+        await sleep(SCROLL_DOWN + PAUSE_BOTTOM);
+
+        // Phase 4: Scroll back up
+        frame.classList.remove('scrolled');
+        await sleep(SCROLL_UP + PAUSE_TOP);
+      }
+    }
+
+    // Stagger start so all 4 previews don't animate in sync
+    previews.forEach((p, i) => {
+      setTimeout(() => runLoop(p), i * 1800);
+    });
   </script>
 </body>
 </html>
