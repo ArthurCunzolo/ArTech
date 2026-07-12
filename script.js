@@ -471,8 +471,9 @@ document.addEventListener('DOMContentLoaded', () => {
       nav.classList.remove('nav--scrolled');
     }
 
-    // Hide nav on scroll down, show on scroll up (only after 200px)
-    if (!isMobile && scrollY > 200) {
+    // Esconde nav ao scrollar para baixo, mostra ao subir (só desktop, e nunca quando menu mobile estiver aberto)
+    const menuIsOpen = document.getElementById('hamburger')?.classList.contains('open');
+    if (!isMobile && !menuIsOpen && scrollY > 200) {
       if (scrollY > lastScroll + 5 && !navHidden) {
         nav.style.transform = 'translateY(-100%)';
         navHidden = true;
@@ -480,6 +481,10 @@ document.addEventListener('DOMContentLoaded', () => {
         nav.style.transform = 'translateY(0)';
         navHidden = false;
       }
+    } else if (menuIsOpen) {
+      // Garante que nav fique sempre visível quando menu mobile estiver aberto
+      nav.style.transform = 'translateY(0)';
+      navHidden = false;
     }
     lastScroll = scrollY;
   }, { passive: true });
@@ -493,12 +498,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMenu = document.getElementById('mobile-menu');
 
   if (hamburger && mobileMenu) {
+    // Limpa qualquer display inline que versões anteriores possam ter setado
+    mobileMenu.style.removeProperty('display');
+
     function openMenu() {
       hamburger.classList.add('open');
       hamburger.setAttribute('aria-expanded', 'true');
       mobileMenu.setAttribute('aria-hidden', 'false');
-      // Remove inline display so CSS .open rule takes over
-      mobileMenu.style.removeProperty('display');
       mobileMenu.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -509,28 +515,23 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileMenu.setAttribute('aria-hidden', 'true');
       mobileMenu.classList.remove('open');
       document.body.style.overflow = '';
-      // Hide after transition completes
-      setTimeout(() => {
-        if (!mobileMenu.classList.contains('open')) {
-          mobileMenu.style.display = 'none';
-        }
-      }, 320);
+      // NUNCA setar display:none inline — CSS controla tudo via opacity/pointer-events
     }
 
     hamburger.addEventListener('click', () => {
-      if (hamburger.classList.contains('open')) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
+      hamburger.classList.contains('open') ? closeMenu() : openMenu();
     });
 
-    // Close on link click
+    // Fecha ao clicar num link
     mobileMenu.querySelectorAll('.nav__mobile-link').forEach(link => {
-      link.addEventListener('click', () => closeMenu());
+      link.addEventListener('click', () => {
+        closeMenu();
+        // Pequeno delay para smooth scroll ter tempo de iniciar
+        setTimeout(() => { document.body.style.overflow = ''; }, 100);
+      });
     });
 
-    // Close on Escape key
+    // Fecha com Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && hamburger.classList.contains('open')) closeMenu();
     });

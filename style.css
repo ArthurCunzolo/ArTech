@@ -207,7 +207,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 9999; /* Sempre acima de tudo, incluindo o menu mobile (9990) */
   padding: 0 clamp(20px, 4vw, 60px);
   transition: background 0.4s var(--ease), backdrop-filter 0.4s, box-shadow 0.4s;
 }
@@ -312,25 +312,28 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 
 /* Mobile menu */
 .nav__mobile {
-  display: none;
+  /* Sempre renderizado no DOM — visibilidade controlada por opacity/pointer-events */
   position: fixed;
-  inset: 0;
   top: 72px;
-  background: rgba(5,5,5,0.96);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  padding: 40px 32px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9990;
+  background: #050505;
   flex-direction: column;
   gap: 0;
+  padding: 32px 28px;
+  overflow-y: auto;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s var(--ease);
-  overflow-y: auto;
+  transform: translateY(-8px);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  display: flex;
 }
 .nav__mobile.open {
   opacity: 1;
   pointer-events: all;
-  display: flex;
+  transform: translateY(0);
 }
 .nav__mobile-link {
   font-size: clamp(26px, 6vw, 40px);
@@ -2073,14 +2076,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   }
 }
 
-/* NAV MOBILE OPEN FIX */
-@media (max-width: 768px) {
-  .nav__mobile.open {
-    display: flex !important;
-    opacity: 1 !important;
-    pointer-events: all !important;
-  }
-}
+/* removed conflicting nav override */
 
 /* ═══════════════════════════════════════════════════════════════
    SERVICE CALCULATOR
